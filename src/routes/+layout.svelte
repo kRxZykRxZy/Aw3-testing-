@@ -1,12 +1,12 @@
 <script lang="ts">
-    import '../../app.css';
+    import '../app.css';
     import { goto } from '$app/navigation';
     import { isBanned } from '$stores/session';
     import { page } from '$app/state';
-    import { theme } from '$stores/theme'; // Assuming 'theme' store is still in use
+    import { theme } from '$stores/theme';
     let { children } = $props();
-    import Header from '$components/header/Header.svelte';
-    import Footer from '$components/footer/Footer.svelte';
+    import Header from '$lib/header/Header.svelte';
+    import Footer from '$lib/footer/Footer.svelte';
 
     if (true) {
         console.warn(
