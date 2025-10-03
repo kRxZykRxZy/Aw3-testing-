@@ -3,7 +3,8 @@ import { db } from '$lib/server/db';
 import { generateSessionToken, createSession, setSessionTokenCookie } from '$lib/server/auth';
 import bcrypt from 'bcrypt';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async (event) => {
+    const { request } = event;
 	const { username, password } = await request.json();
     if (!username || !password) return new Response(JSON.stringify({ error: 'Missing credentials' }), { status: 400 });
     
