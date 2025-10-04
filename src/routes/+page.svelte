@@ -7,7 +7,7 @@
 	import { Heart, Cat, TriangleAlert } from 'lucide';
 	function isAprilFoolsDay(): boolean {
         const date = new Date();
-        return date.getMonth() === 3 && dategit .getDate() === 1; // Month 3 is April (0-indexed)
+        return date.getMonth() === 3 && date.getDate() === 1; // Month 3 is April (0-indexed)
     }
 	function getYearsSince2025() {
 	const currentYear = new Date().getFullYear();
