@@ -197,18 +197,22 @@
       showMessageBox('You must agree to the Terms of Use and Privacy Policy.');
       return;
     }
-    const res = await fetch(`https://ampmod-api.onrender.com/users/${username}/create`, {
+    const res = await fetch(`internalapi/join`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            bio: 'Coming Soon', 
+            country: 'NaN', 
             password: password,
+            username: username, 
             email: email || null
         })
     });
+    const data = res.json();
     // Actual join logic would go here, e.g., sending data to a server
-    showMessageBox('Account created successfully! You can now log in.');
+    showMessageBox();
     window.location.href = '/';
     // In a real app, you'd redirect or log the user in here
   }
@@ -227,7 +231,7 @@
     try {
       const response = await fetch(`https://auth-api.itinerary.eu.org/auth/verifyToken/${privateCode}`);
       const data = await response.json();
-      return data.valid;
+      return data;
     } catch (error) {
       console.error('Error verifying Scratch login:', error);
       return false;
