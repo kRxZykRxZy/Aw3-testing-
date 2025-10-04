@@ -46,18 +46,16 @@ export const POST: RequestHandler = async ({ request }) => {
 			}
 		});
 
-		await db
-			.insert(ampmodder)
-			.values({
-				user_id,
-				username,
-				password_hash,
-				bio: bio || null,
-				joined,
-				rank: 0,
-				ghost: false,
-				userMETA
-			});
+		await db.insert(ampmodder).values({
+			user_id,
+			username,
+			password_hash,
+			bio: bio || null,
+			joined,
+			rank: 0,
+			ghost: false,
+			userMETA
+		});
 		return new Response(
 			JSON.stringify({ message: 'Registration successful', user: { id: user_id, username } }),
 			{ status: 201 }
