@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ToggleSwitch from '$components/toggle-switch/ToggleSwitch.svelte';
+    import ToggleSwitch from '$lib/toggle-switch/ToggleSwitch.svelte';
     import { slide } from 'svelte/transition';
     import { username } from '$stores/session.js';
     import { Pencil } from '@lucide/svelte';
