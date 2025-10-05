@@ -3,7 +3,7 @@
     import { slide } from 'svelte/transition';
     import { username } from '$stores/session.js';
     import { Pencil } from '@lucide/svelte';
-    import Spinner from '$components/spinner/Spinner.svelte';
+    import Spinner from '$lib/spinner/Spinner.svelte';
 
     let privateToggle = false;
     let followToggle = false;
