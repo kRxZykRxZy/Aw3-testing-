@@ -1,7 +1,7 @@
 <script lang="ts">
   import { theme } from '$stores/theme';
-  import Banner from '$components/banner/Banner.svelte';
-  import LeftTabbed from '$components/tabbed/LeftTabbed.svelte';
+  import Banner from '$lib/banner/Banner.svelte';
+  import LeftTabbed from '$lib/tabbed/LeftTabbed.svelte';
   import Profile from './Profile.svelte';
   import Account from './Account.svelte';
   import DangerZone from './Danger.svelte';
