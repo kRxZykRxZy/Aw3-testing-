@@ -3,7 +3,7 @@
 </svelte:head>
 <script lang="ts">
     import { onMount } from 'svelte';
-    import Spinner from '$components/spinner/Spinner.svelte';
+    import Spinner from '$lib/spinner/Spinner.svelte';
   
     let showAppealForm = false;
     let appealText = '';
