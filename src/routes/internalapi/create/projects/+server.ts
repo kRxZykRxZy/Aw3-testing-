@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
-import { validateSessionToken, sessionCookieName } from '$lib/server/session';
+import { validateSessionToken, sessionCookieName } from '$lib/server/auth';
 import { encodeBase64 } from '@oslojs/encoding';
 
 export const POST: RequestHandler = async ({ url, request, cookies }) => {
