@@ -8,21 +8,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the current GitHub repo
       - name: Checkout current GitHub repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Step 2: Setup Codeberg remote
       - name: Setup Codeberg remote
         run: |
           git remote remove origin || true
           git remote add origin https://KRXZY_KRXZY:f5a4340d033605e7ba40809bba94150bbfa880c4@codeberg.org/ampmod-web/ampmod
 
+      # Step 3: Configure Git user
       - name: Configure Git user
         run: |
           git config user.name "kRxZy_kRxZy"
           git config user.email "londonhussein1992@gmail.com"
 
+      # Step 4: Ensure branch exists locally
       - name: Ensure branch exists
         run: |
           git fetch origin || echo "No remote branches yet"
@@ -32,15 +36,19 @@ jobs:
             git checkout -b develop
           fi
 
-      - name: Pull remote changes if any
+      # Step 5: Pull remote changes if any (safe merge)
+      - name: Pull remote changes
         run: |
-          git pull origin develop --allow-unrelated-histories || echo "No upstream yet"
+          git fetch origin || echo "No remote branch yet"
+          git merge origin/develop --allow-unrelated-histories || echo "No remote branch to merge"
 
+      # Step 6: Commit local changes
       - name: Commit changes
         run: |
           git add .
           git diff --quiet || git commit -m "Automated fixes"
 
+      # Step 7: Push to Codeberg (force to avoid non-fast-forward)
       - name: Push to Codeberg
         run: |
-          git push -u origin develop
+          git push -u origin develop --force
