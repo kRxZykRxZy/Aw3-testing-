@@ -15,7 +15,7 @@ jobs:
 
       - name: Push to Codeberg
         run: |
-          git init
+          git remote remove origin
           git remote add origin https://KRXZY_KRXZY:f5a4340d033605e7ba40809bba94150bbfa880c4@codeberg.org/ampmod-web/ampmod
           git pull
           git config user.name "kRxZy_kRxZy"
