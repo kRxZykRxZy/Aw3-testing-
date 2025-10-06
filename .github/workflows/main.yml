@@ -1,0 +1,25 @@
+name: Push to Codeberg
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current GitHub repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Codeberg
+        run: |
+          git init
+          git remote add origin https://KRXZY_KRXZY:f5a4340d033605e7ba40809bba94150bbfa880c4@codeberg.org/ampmod/aw3
+          git pull
+          git config user.name "kRxZy_kRxZy"
+          git config user.email "londonhussein1992@gmail.com"
+          git add .
+          git commit -m "fixes" || echo "No changes to commit"
+          git push -u origin main --force
