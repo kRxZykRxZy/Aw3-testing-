@@ -13,13 +13,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to Codeberg
+      - name: Setup Codeberg remote
         run: |
-          git remote remove origin
+          git remote remove origin || true
           git remote add origin https://KRXZY_KRXZY:f5a4340d033605e7ba40809bba94150bbfa880c4@codeberg.org/ampmod-web/ampmod
-          git pull
+
+      - name: Configure Git user
+        run: |
           git config user.name "kRxZy_kRxZy"
           git config user.email "londonhussein1992@gmail.com"
+
+      - name: Ensure branch exists
+        run: |
+          git fetch origin || echo "No remote branches yet"
+          if git show-ref --verify --quiet refs/heads/develop; then
+            git checkout develop
+          else
+            git checkout -b develop
+          fi
+
+      - name: Pull remote changes if any
+        run: |
+          git pull origin develop --allow-unrelated-histories || echo "No upstream yet"
+
+      - name: Commit changes
+        run: |
           git add .
-          git diff --quiet || git commit -m "fixes"
+          git diff --quiet || git commit -m "Automated fixes"
+
+      - name: Push to Codeberg
+        run: |
           git push -u origin develop
