@@ -24,7 +24,7 @@ jobs:
 
       - name: Clone Codeberg repo
         run: |
-          git clone --depth=1 https://codeberg.org/ampmod/aw3 temp-src
+          git clone --depth=1 https://codeberg.org/ampmod-web/ampmod temp-src
           cp -r temp-src/* .
           rm -rf temp-src
 
