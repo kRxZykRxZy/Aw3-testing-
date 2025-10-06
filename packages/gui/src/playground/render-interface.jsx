@@ -38,7 +38,7 @@ import {
     createNewProject,
     saveProject,
     shareProject
-} from "./project-sync";
+} from "./aw3-features";
 
 runAddons();
 
