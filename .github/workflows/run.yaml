@@ -1,0 +1,33 @@
+name: Deploy GUI to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Needed for GitHub Pages deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Change to your project Node version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run ci-build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: packages/gui/build
+          publish_branch: gh-pages
