@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>New compiler - AmpMod</title>
+        
+          
+          <meta name="description" content="AmpMod 0.3 includes a rewritten compiler to make projects run up to 2 times faster than in AmpMod 0.2.2." />
+          <meta property="og:title" content="New compiler - AmpMod">
+          <meta property="og:description" content="AmpMod 0.3 includes a rewritten compiler to make projects run up to 2 times faster than in AmpMod 0.2.2.">
+          <meta property="og:type" content="website">
+          <meta name="twitter:card" content="summary_large_image">
+          <meta name="twitter:title" content="New compiler - AmpMod">
+          <meta name="twitter:description" content="AmpMod 0.3 includes a rewritten compiler to make projects run up to 2 times faster than in AmpMod 0.2.2.">
+          <meta name="twitter:image" content="/images/card.png">
+        
+        <link rel="canonical" href="https://ampmod.codeberg.page">
+          
+          <meta name="robots" content="noindex, nofollow">
+        
+        <style>
+            body[data-splash-theme="dark"] {
+                background: #111;
+            }
+            body[data-splash-theme="amoled"], body[data-splash-theme="high-contrast"] {
+                background: #000;
+            }
+            .splash-custom-info[hidden] {
+                display: none;
+            }
+            .splash-custom-info {
+                padding: 20px;
+                border-radius: 8px;
+                margin: 10px;
+                background: #59c059;
+                color: white;
+                font-family: sans-serif;
+            }
+            .splash-custom-info a {
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>
+            <h1>This page requires JavaScript</h1>
+        </noscript>
+
+        <div class="splash-custom-info" hidden></div>
+
+        <div id="app"></div>
+
+        <script>
+            (function() {
+              var theme = '';
+
+              var canary = false;
+
+              try {
+                if (canary) {
+                  var themeSetting = localStorage.getItem('canary:theme');
+                } else {
+                  var themeSetting = localStorage.getItem('amp:theme');
+                }
+              } catch (e) {
+                // ignore
+              }
+              if (themeSetting === 'light') {
+                theme = 'light';
+              } else if (themeSetting === 'dark') {
+                theme = 'dark';
+              } else if (themeSetting) {
+                try {
+                  var parsed = JSON.parse(themeSetting);
+                  theme = parsed.gui;
+                } catch (e) {
+                  // ignore
+                }
+              }
+
+              if (!theme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+              }
+
+              document.body.setAttribute('data-splash-theme', theme);
+            })();
+        </script>
+
+        <script>
+            // Check every 0.3 seconds if the app is in minimal-ui mode (PWA).
+            setInterval(function () {
+                if (window.matchMedia("(display-mode: minimal-ui)").matches) {
+                    // If in minimal-ui mode, redirect to /editor.html.
+                    window.location.href = "/editor.html";
+                }
+            }, 300);
+
+            var splashCustomInfo = document.querySelector(
+                ".splash-custom-info"
+            );
+            window.SetCustomSplashInfo = text => {
+                splashCustomInfo.hidden = false;
+                splashCustomInfo.innerHTML = text;
+            };
+            window.SplashEnd = () => {
+                splashCustomInfo.parentNode.removeChild(splashCustomInfo);
+            };
+        </script>
+    <script src="js/vendors~addon-settings~credits~editor~embed~fullscreen~headeronly~home~newcompiler~notfound.js"></script><script src="js/vendors~credits~editor~embed~fullscreen~headeronly~home~newcompiler.js"></script><script src="js/addon-settings~credits~editor~embed~fullscreen~headeronly~home~newcompiler~notfound.js"></script><script src="js/credits~headeronly~home~newcompiler.js"></script><script src="js/newcompiler.js"></script></body>
+</html>
